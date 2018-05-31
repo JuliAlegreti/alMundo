@@ -31,6 +31,6 @@ $ npm install
 
 ```bash
 # development
-$ npm run start
+$ ng serve
 ```
 
