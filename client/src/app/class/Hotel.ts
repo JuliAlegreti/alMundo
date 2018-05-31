@@ -1,3 +1,6 @@
+/**
+ * Clase para la representación de los hoteles
+ */
 import { Amenitie } from "./Amenitie";
 
 export class Hotel {

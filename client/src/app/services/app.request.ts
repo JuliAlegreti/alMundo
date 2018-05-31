@@ -15,7 +15,7 @@ export class RequestService {
     constructor(private http: Http) {}
 
     /**
-     * Función qué realiza la peticion get
+     * Función qué realiza la peticion al servidor via GET
      */
     public get(url:string, parameters?:any) {        
 		return this.http.get(this.url + url, {params:parameters})
@@ -23,7 +23,10 @@ export class RequestService {
 			.catch(this.handleError);
     }
 	
-	
+	/**
+     * Comprueba la respuesta de la petición, si viene vacio devuelve un objeto vacio {} si no devuelve la respuesta
+     * @param res Respuesta de la petición al server 
+     */
 	private extractData(res: Response) {
         let body = res.json();
         return body || { };

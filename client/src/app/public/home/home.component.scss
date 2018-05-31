@@ -1,5 +1,13 @@
 @import "../../../styles";
 
+i{
+	font-size: 20px;
+	color:$azulClaro;
+	&.invert{
+		transform: rotate(180deg);
+	}
+}
+
 #filter__svg, #filter__star{
 	width: 20px;
 	height: 20px;
@@ -16,13 +24,6 @@ svg[id^="filter__star__"]{
 	width: 100%;	
 	background-color: $gris;
 	
-	@include from(l) {
-		display: flex;
-		justify-content: space-between;
-		padding: 35px;
-		align-items: flex-start;
-	}
-
 	@include from(m) {
 		display: flex;
 		justify-content: space-between;
@@ -44,6 +45,16 @@ svg[id^="filter__star__"]{
 		display: block;
 		margin:0;
 		padding: 20px 15px;
+		position: relative;
+
+		i{
+			right: 25px;
+			position: absolute;			
+						
+			@include from(m) {
+				display: none;
+			}			
+		}
 	}
 	
 	&__form{
@@ -51,8 +62,11 @@ svg[id^="filter__star__"]{
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
-		margin-bottom: 10px;
-		padding: 20px 25px;							
+		padding: 20px 25px;		
+
+		@include from(m) {
+			margin-bottom: 10px;
+		}
 
 		accordion-heading{
 			align-items: center;
@@ -62,9 +76,15 @@ svg[id^="filter__star__"]{
 			font-weight: bold;
 			margin-bottom: 10px;
 			width: 100%;
+			position: relative;
 			label{
 				color:$azulClaro;
 				margin-left:5px; 
+			}
+			i{
+				right: 0px;
+				top: 0;
+				position: absolute;	
 			}
 		}
 	}

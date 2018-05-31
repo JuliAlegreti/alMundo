@@ -1,3 +1,6 @@
+/**
+ * Se convierte la data que venía en el json de la prueba en instancias de clase.
+ */
 import { Hotel } from "class/Hotel";
 import { Amenitie } from "class/Amenitie";
 

@@ -1,11 +1,21 @@
+<!-- Llamado a component Header -->
 <app-header></app-header>
-<div class="main">
-	<accordion class="filters">
-		<accordion-group [isOpened]="true">
-			<accordion-heading class="filters__title">Filtros</accordion-heading>
 
+<div class="main">
+	<!--Acordion principal filtros-->
+	<accordion class="filters">
+		<accordion-group [isOpened]="true" (onToggle)="flag = !flag">
+			<!--Titulo acordion principal filtros-->
+			<accordion-heading class="filters__title">
+				Filtros <i [ngClass]="{'invert': flag}" class="fas fa-caret-up"></i>
+			</accordion-heading>
+			<!--Fin titulo acordion principal filtros-->
+
+			<!--Cuerpo acordion principal filtros-->
 			<accordion class="filters__main" [closeOthers]="false">
-				<accordion-group class="filters__form" [isOpened]="true">
+
+				<!-- Acordion filtro por nombre -->
+				<accordion-group class="filters__form" [isOpened]="true" (onToggle)="flagFilter = !flagFilter">
 					<accordion-heading>
 						<svg version="1.1" id="filter__svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
 						 y="0px" viewBox="0 0 538.6 538.6" enable-background="new 0 0 538.6 538.6" xml:space="preserve">
@@ -23,17 +33,19 @@
 							</g>
 						</svg>
 						<label for="name">Nombre del hotel:</label>
+						<i class="fas fa-caret-up" [ngClass]="{'invert': flagFilter}"></i>
 					</accordion-heading>
 					<input id="name" type="text" class="filters__input" placeholder="Ingresa el nombre del hotel" [(ngModel)]="nameHotel" name="nameHotel">
 					<input type="button" class="filters__button" value="Aceptar" (click)="filterByName()">
 				</accordion-group>
+				<!-- Fin acordion filtro por nombre -->
 
-				<accordion-group class="filters__form--stars" [isOpened]="true" >
+				<!-- Acordion filtro por estrellas -->
+				<accordion-group class="filters__form--stars" [isOpened]="true" (onToggle)="flagStar = !flagStar">
 					<accordion-heading class="title_stars">
 						<svg version="1.1" id="filter__star" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
 						 y="0px" viewBox="0 0 538.6 538.6" enable-background="new 0 0 538.6 538.6" xml:space="preserve">
-							<g>
-								<path d="M501.2,218.5c0,2-0.7,4.1-2,6.3c-1.3,2.3-3.1,4.7-5.4,7.3l-102.1,99.6l23.9,140.6c0,0.7,0.1,1.5,0.2,2.4
+							<g><path d="M501.2,218.5c0,2-0.7,4.1-2,6.3c-1.3,2.3-3.1,4.7-5.4,7.3l-102.1,99.6l23.9,140.6c0,0.7,0.1,1.5,0.2,2.4
 										  c0.2,1,0.2,2.1,0.2,3.4c0,2-0.2,3.7-0.7,5.4c-0.5,1.6-1.2,3.1-2.2,4.4c-1,1.6-2.2,2.8-3.7,3.4c-1.5,0.6-3.2,1-5.1,1
 										  c-1.6,0-3.4-0.3-5.4-1c-2-0.7-3.9-1.5-5.9-2.4l-126.5-66.4L140.3,489c-2,1-3.9,1.8-5.9,2.4c-2,0.6-3.7,1-5.4,1c-2,0-3.7-0.3-5.1-1
 										  c-1.5-0.7-2.7-1.8-3.7-3.4c-1-1.3-1.7-2.8-2.2-4.4c-0.5-1.6-0.7-3.4-0.7-5.4c0-0.6,0-1.5,0-2.4s0.2-2.1,0.5-3.4l23.9-140.6
@@ -43,9 +55,10 @@
 							</g>
 						</svg>
 						<label for="name">Estrellas:</label>
+						<i class="fas fa-caret-up" [ngClass]="{'invert': flagStar}"></i>
 					</accordion-heading>
 					<div class="title_stars">
-						<input type="checkbox" [checked]="starsSelected.length == 0" name="star"/>
+						<input type="checkbox" [checked]="starsSelected.length == 0" name="star" (change)="allStars(allStar)" [(ngModel)]="allStar"/>
 						<span class="all-stars">Todas las estrellas</span>
 					</div>
 					<div *ngFor="let star of stars; let i=index" class="title_stars">
@@ -66,15 +79,24 @@
 						</span>
 					</div>
 				</accordion-group>
+				<!-- Fin acordion filtro por estrellas -->
 
 			</accordion>
+			<!--Fin cuerpo acordion principal filtros-->
 		</accordion-group>
 	</accordion>
+	<!--Fin acordion principal filtros-->
 
+	<!-- Seccion de hoteles -->
 	<section class="hotels">
 		<article class="hotel" *ngFor="let hotel of hotels">
+
+			<!-- Descripción del hotel -->
 			<div class="hotel__description">
+				
 				<figure class="hotel__image" [style.backgroundImage]="'url(./assets/images/hotels/'+ hotel.image +')'"></figure>
+				
+				<!-- Contenedor de la información del hotel -->
 				<div class="hotel__information">
 					<span class="hotel__title">{{hotel.name}}</span>
 					<span class="hotel__stairs">
@@ -97,7 +119,11 @@
 						<img src="./assets/icons/amenities/{{amenitie.name}}.svg" alt="" class="hotel__amenitie" *ngFor="let amenitie of hotel.amenities">
 					</span>
 				</div>
+				<!-- Fin contenedor de la información del hotel -->
 			</div>
+			<!-- Fin descripción del hotel -->
+
+			<!-- Información del precio del hotel -->
 			<div class="hotel__information--price">
 				<span class="hotel__title-price">Precio por noche por habitación</span>
 				<span class="hotel__price">ARS
@@ -105,6 +131,9 @@
 				</span>
 				<a class="hotel__submit" href="/">Ver hotel</a>
 			</div>
+			<!-- Fin información del precio del hotel -->
+			
 		</article>
 	</section>
+	<!-- Fin seccion de hoteles -->
 </div>

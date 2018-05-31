@@ -8,7 +8,7 @@ import { RequestService } from '../../services/app.request';
 	styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-	public nameHotel: string = '';
+	public nameHotel: string = ''; 
 	public stars = [
 		{ count: 5, selected: false},
 		{ count: 4, selected: false},		
@@ -24,12 +24,11 @@ export class HomeComponent implements OnInit {
 	ngOnInit() {
 		this.getHotels();
 		this.starsSelected = this.getSelectedStars();
-	}
+	}	
 
-	public arrayOne(n: number): number[] {
-		return Array(n);
-	}
-
+	/**
+	 * Raliza el envío del nombre por el que se desea filtrar los hoteles al servicio que hace la peticion.
+	 */
 	public filterByName() {	
 		if (this.nameHotel) {
 			let hotelsByFilter = this.getSelectedStars(),
@@ -47,6 +46,9 @@ export class HomeComponent implements OnInit {
 
 	}
 	
+	/**
+	 * Raliza el envío de las estrellas por las que se quiere filtrar los hoteles al servicio que hace la peticion.
+	 */
 	public filterByStar(){
 		let hotelsByFilter = this.getSelectedStars();
 		this.starsSelected = this.getSelectedStars();		
@@ -60,13 +62,42 @@ export class HomeComponent implements OnInit {
 		}
 	}	
 
+	/**
+	 * Crea el array de las estrellas seleccionadas.
+	 */
 	public getSelectedStars(){
 		return this.stars.filter(star=>{return (star.selected);});
 	}
 
+	/**
+	 * En caso tal de que checkeen 'todas las estrellas' elimina los filtros de las demás estrellas
+	 * @param checked estado del checkbox (checkeado o no)
+	 */
+	public allStars(checked:boolean){
+		if(checked){
+			this.stars.forEach(star=>{
+				if(star.selected) star.selected = !star.selected;
+			});
+			this.getHotels();
+			this.starsSelected = this.getSelectedStars();
+		}
+	}
+
+	/**
+	 * Convierte en un array tipo numerico de un tamaño especifico
+	 * @param n Tamaño del Array
+	 */
+	public arrayOne(n: number): number[] {
+		return Array(n);
+	}
+
+	/**
+	 * Realiza el llamado al servicio que hace la peticion para traer todos los hoteles.
+	 */
 	private getHotels() {
 		this.requestService.get('hotels', {}).subscribe((res) => {
 			this.hotels = res;
 		});
 	}
+	
 }
