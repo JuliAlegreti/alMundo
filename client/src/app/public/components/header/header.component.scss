@@ -1,0 +1,13 @@
+@import "../../../../styles";
+.header{
+	background-color: $azul;
+	display: flex;
+	height: 100px;
+	padding: 15px 30px;
+	width: 100%;
+	align-items: center;
+	
+	&__img{
+		width: 250px;
+	}
+}

@@ -1,0 +1,26 @@
+server/package-lock.json
+server/node_modules
+
+# compiled output
+client/dist
+client/tmp
+client/out-tsc
+client/package-lock.json
+
+# dependencies
+client/node_modules
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# e2e
+client/e2e/*.js
+client/e2e/*.map
+
+# System Files
+.DS_Store
+Thumbs.db

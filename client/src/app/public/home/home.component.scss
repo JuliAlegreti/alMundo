@@ -1,0 +1,251 @@
+@import "../../../styles";
+
+#filter__svg, #filter__star{
+	width: 20px;
+	height: 20px;
+	fill: $azulClaro;
+}
+
+svg[id^="filter__star__"]{
+	width: 15px;
+	height: 15px;
+	fill:#ffbb00;
+}
+
+.main{
+	width: 100%;	
+	background-color: $gris;
+	
+	@include from(l) {
+		display: flex;
+		justify-content: space-between;
+		padding: 35px;
+		align-items: flex-start;
+	}
+
+	@include from(m) {
+		display: flex;
+		justify-content: space-between;
+		padding: 35px;
+		align-items: flex-start;
+	}
+}
+
+.all-stars{
+	color: darken($color: $gris, $amount: 50);
+	font-weight: 500;
+	font-size: 18px;
+}
+
+.filters{		
+
+	&__title{
+		background-color: $blanco;
+		display: block;
+		margin:0;
+		padding: 20px 15px;
+	}
+	
+	&__form{
+		background-color: $blanco;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		margin-bottom: 10px;
+		padding: 20px 25px;							
+
+		accordion-heading{
+			align-items: center;
+			cursor: pointer;			
+			display: flex;
+			font-size: 18px;
+			font-weight: bold;
+			margin-bottom: 10px;
+			width: 100%;
+			label{
+				color:$azulClaro;
+				margin-left:5px; 
+			}
+		}
+	}
+
+	&__form--stars{
+		@extend .filters__form;
+		
+		.title_stars{
+			margin-bottom: 20px;
+		}
+	}
+
+	&__input{
+		border-radius: 3px;
+		border-style: inset;
+		font-size: 18px;
+		padding: 10px 5px;
+		width: 65%;
+	}
+	
+	&__button{
+		background-color: $azul;
+		border:none;
+		border-radius: 2px;
+		box-shadow: darken($color: $azul, $amount: 6) 1px 1px 1px;
+		color:$blanco;
+		cursor: pointer;
+		font-size: 20px;
+		padding: 10px 0;
+		width: 30%;
+	}
+
+	@include from(m) {
+		display: block;
+		width: 40%;
+		
+		&__title{
+			margin-bottom: 10px;
+		}
+	}	
+
+	@include from(l) {
+		display: block;
+		width: 28%;
+		
+		&__title{
+			margin-bottom: 10px;
+		}
+	}
+
+	
+}
+
+.hotels{
+	margin:20px auto;
+	width: 98%;	
+	
+	@include from(m) {
+		width: 60%;
+		margin: 0;
+	}
+
+	@include from(l) {
+		width: 70%;
+		margin: 0;
+	}
+}
+
+.hotel{
+	background-color: $blanco;
+	box-shadow: darken($color: $gris, $amount: 6) 2px 1px 1px;
+	margin:0 auto 30px;
+	padding: 10px;
+	width: 95%;
+
+	@include from(l) {
+		width: 100%;
+		display: flex;
+	}
+
+	&__description{
+		width: 100%;
+		@include from(l) {
+			display: flex;
+			width: 70%;
+		}
+	}
+
+	&__image{
+		background-size: cover;
+		height: 250px;
+		margin:0;
+		padding: 0;
+		width: 100%;
+		@include from(l) {
+			width: 40%;
+		}
+	}
+
+	&__information{
+		border-bottom: 1px dashed darken($color: $gris, $amount: 50);
+		display: flex;
+		padding: 0 25px;
+		flex-direction: column;
+		> span{
+			margin-top: 20px;
+		}
+
+		&--price{
+			margin-top:20px;
+			display: flex;
+			flex-direction: column;
+			text-align: center;
+			@include from(l) {
+				width: 30%;
+			}
+		}
+
+		@include from(l) {
+			border-bottom: none;
+			border-right: 1px dashed darken($color: $gris, $amount: 50);
+			width: 60%;
+			> span:nth-of-type(1){
+				margin-top: 0px;				
+			}
+		}
+	}
+
+	&__title{
+		color:$azulClaro;	
+		font-weight: bold;
+		font-size: 20px;
+
+		&-price{
+			color:darken($color: $gris, $amount: 50)
+		}		
+	}
+
+	&__stairs{
+		display: flex;
+	}
+
+	&__star{
+		width: 18px;
+		margin-top: 0px;		
+		svg{
+			height: 18px;
+			fill: #ffbb00;
+			width: 100%;
+		}
+	}
+
+	&__amenities{
+		display: flex;
+		margin-bottom: 20px;
+	}
+
+	&__amenitie{
+		height: 22px;
+		margin-right: 8px;
+		width: 22px;		
+	}
+
+	&__price{
+		color:$naranja;
+		font-size: 32px;
+	}
+
+	&__submit{
+		background-color:$azul;
+		border-radius: 5px;
+		box-shadow: darken($color: $azul, $amount: 30) 1px 2px 2px;
+		color:$blanco;
+		font-size: 22px;
+		margin: 15px auto;
+		padding: 10px 15px;
+		width: 80%;	
+		text-decoration: none;
+
+		&:hover{
+			text-decoration: none;
+		}
+	}
+}

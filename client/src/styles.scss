@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+/*Libreria para la grilla responsive*/
+@import "./node_modules/ed-grid/ed-grid";
+
+/*Colores*/
+$azul: #144486;
+$azulClaro: #0679b3;
+$gris: #f4f4f4;
+$blanco: #fff;
+$naranja: #e16800;
+
+/*Estilos globales*/
+*{
+	box-sizing: border-box;
+}
+
+body{
+	margin:0;
+}
+
+.panel-title{
+	margin: 0;
+	width: 100%;
+	cursor: pointer;
+}
+
+.panel-default{
+	width: 100%;
+	margin:0 auto;
+
+	@include from(l) {
+		display: block;
+		
+		&__title{
+			padding: 20px 15px;
+			margin-bottom: 10px;
+		}
+	}
+}
